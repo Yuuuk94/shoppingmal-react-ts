@@ -1,0 +1,397 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+*::before, *::after{
+	border-spacing: 0;
+}
+
+html, body, header, main, footer, 
+h1, h2, h3, h4, h5, h6, figure, 
+div, span, p, a, input, dl, dt, dd{
+    margin: 0; padding: 0;
+}
+img, video, iframe{
+    width: 100%; height: auto; 
+    margin: 0; padding: 0;
+    vertical-align: middle;
+}
+a{text-decoration: none; color: inherit;}
+ol,ul,li{
+    margin: 0; padding: 0;
+    list-style-type: none;
+}
+table {
+    border-collapse: collapse;
+	border-spacing: 0;
+}
+input, button{
+    border: none;
+    background: none;
+    &:focus{
+        outline: none;
+    }
+}
+
+// color
+$mc: #003594;
+$b: #000;
+$sb: #adadad;
+$sbw: #cdcdcd;
+$sw: #efefef;
+$w: #fff;
+
+
+// width
+
+body{
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+// =============================================================
+// =========================  header  ==========================
+// =============================================================
+header{
+    width: 100%;
+    max-width: 760px;
+    min-width: 360px;
+    position: fixed;
+    top: 0;
+    z-index: 300;
+    .header-wrap{
+        padding: 10px 10px;
+        height: 46px;
+        background-color: $w;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        position: relative;
+        &::after{
+            content: '';
+            width: 100%;
+            border: 1px solid $sw;
+            transform: scaleY(.5);
+            position: absolute;
+            left: 0; bottom: -1px;
+        }
+    }
+    .bugermenu{
+        width: 20px; height: 18px;
+        margin: 0 2px;
+        position: relative;
+        cursor: pointer;
+        span{
+            width: 100%;
+            border-bottom: 2px solid $b;
+            transform: scaleY(.6);
+            position: absolute;
+            left: 0; top: 50%;
+    
+            &:nth-of-type(1){
+                transform: translateY(-8px) scaleY(.6);
+            }
+            &:nth-of-type(3){
+                transform: translateY(8px) scaleY(.6);
+            }
+        }
+    }
+
+    .title {
+        width: 84px;
+        margin: 0 20px;
+        padding-bottom: 1px;
+        font-size: 0;
+    }
+    .header-icon{
+        font-size: 0;
+        display: flex;
+        position: absolute;
+        right: 10px; top: calc(50% - 12px);
+        span{
+            width: 20px;
+            margin-left: 24px ;
+        }
+        span:nth-of-type(1){
+            width: 16px;
+            position: relative;
+            span{
+                width: 14px; height: 14px;
+                padding: 1px 0;
+                background-color: $mc;
+                border-radius: 100%;
+                color: $w;
+                font-size: 8px;
+                text-align: center;
+                line-height: 1;
+                display: block;
+                position: absolute;
+                right: -50%; top: 0;
+            }
+        }
+    }
+    .menu{
+        width: 100%; height: 100vh;
+        transition: .8s;
+        position: fixed;
+        left: -100%; top: 0;
+        z-index: 500;
+        &.active{
+            left: 0;
+        }
+        .bg {
+            width: 200%; height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            &.active{
+                display: block;
+            }
+        }        
+        .mobile-menu{
+            width: 100%; height: 100vh;
+            padding-left: calc(15% + 40px);
+            background-color: $mc;
+            border-radius: 34px;
+            position: absolute;
+            left: -15%; top: 0;
+            transition: .8s;
+            transform: translateX(-100%);
+            &.active{
+                transform: translateX(0);
+            }
+        }        
+        .x{
+            width: 30px; height: 60px;
+            transform: translateX(-30px);
+            position: relative;
+            cursor: pointer;
+            span{
+                width: 34px;
+                border-bottom: 1px solid $sb;
+                opacity: .8;
+                position: absolute;
+                left: 0px; top: 24px;
+                &:nth-of-type(1){
+                    transform: rotate(45deg);
+                }
+                &:nth-of-type(2){
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+        .m-wrap{
+            white-space: nowrap;
+            overflow-x: scroll;
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            &::-webkit-scrollbar{
+                display:none; 
+            }
+        }
+        .s-title{
+            width: 168px;
+            margin-bottom: 46px;
+        }
+        .m-list{
+            margin-bottom: 38px;
+            color: $w;
+            li{
+                margin-bottom: 6px;
+            }
+            a{            
+                font-size: 22px;
+                letter-spacing: 1.30px;
+                font-style: italic;
+                font-weight: bold;
+            }
+        }
+        .s-list{
+            color: $w;
+            opacity: .85;
+            li{
+                margin-bottom: 8px;
+            }
+            a{
+                font-size: 15px;
+                letter-spacing: 0.75px;
+            }
+        }
+        .my{
+            width: 100%;
+            color: $w;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            position: fixed;
+            left: 8%; bottom: 40px;
+            li{
+                margin: 0 16px;
+                position: relative;
+                &::after{
+                    content: '';
+                    border: 1px solid $w;
+                    transform: scaleX(.5);
+                    height: 8px;
+                    opacity: .4;
+                    display: inline-block;
+                    position: absolute;
+                    right: -18px; top: 7px;
+                }
+            }
+            li:nth-of-type(3)::after{
+                display: none;
+            }
+            a{
+                font-size: 14px;
+                letter-spacing: 1px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+// =============================================================
+// =========================  footer  ==========================
+// =============================================================
+
+footer{
+    .footer-warp{
+        width: 100%;
+        padding: 14px;
+        margin-top: 12px;
+    }
+    .f-title{
+        width: 142px; height: 38px;
+    }
+    .f-sm{
+        padding: 16px 0; 
+        font-weight: bold ;
+        span{
+            margin-right: 8px;
+            position: relative;
+            a{
+                font-size: 10px;
+            }
+            &::after{
+                content: '';
+                border: 1px solid $b;
+                height: 7px;
+                position: absolute;
+                right: -6px; top: 7px;
+                transform: scaleX(0.5);
+            }
+        }
+        span:nth-of-type(4)::after{
+            display: none;
+        }
+    } 
+    .f-dt{
+        font-size: 12px;
+        color: $sb;
+    }
+    .sns{
+        span{display: none;}
+        p{
+            width: 25px; height: 25px;
+            margin: 18px 0;
+        }
+    }
+    p{
+        margin-bottom: 64px;
+        font-size: 12px;
+        color: $sb;
+        letter-spacing: 0;
+    }
+}
+
+// =============================================================
+// =========================  title ani  =======================
+// =============================================================
+
+.title-ani{
+    margin: 100px 15px 20px;
+    color: $b;
+    font-size: 56px;
+    font-weight: bold;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    &::before{
+        content: attr(data-content);
+        position: absolute;
+        left: -2px; top: 0;
+        text-shadow: -2px 0 #00ff00;
+        width: 100%;
+        color: rgba(0,53,148,.8);
+        overflow: hidden;
+        clip: rect(0, 500px, 0, 0);
+        animation: noise-anim 3s infinite linear alternate-reverse;
+    }
+    &::after{
+        content: attr(data-content);
+        position: absolute;
+        left: -2px; top: 0;
+        text-shadow: 2px 0 #ff00ff;
+        color: rgba(0,53,148,.8);
+        width: 100%;
+        overflow: hidden;
+        clip: rect(0, 500px, 0, 0);
+        animation: noise-anim-2 3s infinite linear alternate-reverse;
+    }
+}
+@keyframes noise-anim-2 {
+    0% {clip: rect(77px, 9999px, 22px, 0)}
+    5% {clip: rect(70px, 9999px, 31px, 0)}
+    10% {clip: rect(37px, 9999px, 45px, 0)}
+    15% {clip: rect(43px, 9999px, 29px, 0)}
+    20% {clip: rect(41px, 9999px, 44px, 0)}
+    25% {clip: rect(9px, 9999px, 79px, 0)}
+    30% {clip: rect(91px, 9999px, 12px, 0)}
+    35% {clip: rect(48px, 9999px, 74px, 0)}
+    40% {clip: rect(30px, 9999px, 69px, 0)}
+    45% {clip: rect(31px, 9999px, 93px, 0)}
+    50% {clip: rect(91px, 9999px, 52px, 0)}
+    55% {clip: rect(55px, 9999px, 62px, 0)}
+    60% {clip: rect(21px, 9999px, 71px, 0)}
+    65% {clip: rect(29px, 9999px, 52px, 0)}
+    70% {clip: rect(33px, 9999px, 81px, 0)}
+    75% {clip: rect(44px, 9999px, 3px, 0)}
+    80% {clip: rect(71px, 9999px, 47px, 0)}
+    85% {clip: rect(77px, 9999px, 76px, 0)}
+    90% {clip: rect(43px, 9999px, 48px, 0)}
+    95% {clip: rect(13px, 9999px, 80px, 0)}
+    100% {clip: rect(15px, 9999px, 11px, 0)}
+}
+@keyframes noise-anim {
+    0% {clip: rect(40px, 9999px, 198px, 0)}
+    5% {clip: rect(111px, 9999px, 135px, 0)}
+    10% {clip: rect(134px, 9999px, 92px, 0)}
+    15% {clip: rect(156px, 9999px, 171px, 0)}
+    20% {clip: rect(92px, 9999px, 73px, 0)}
+    25% {clip: rect(200px, 9999px, 108px, 0)}
+    30% {clip: rect(147px, 9999px, 48px, 0)}
+    35% {clip: rect(136px, 9999px, 189px, 0)}
+    40% {clip: rect(12px, 9999px, 116px, 0)}
+    45% {clip: rect(74px, 9999px, 4px, 0)}
+    50% {clip: rect(25px, 9999px, 97px, 0)}
+    55% {clip: rect(40px, 9999px, 39px, 0)}
+    60% {clip: rect(73px, 9999px, 123px, 0)}
+    65% {clip: rect(58px, 9999px, 36px, 0)}
+    70% {clip: rect(154px, 9999px, 8px, 0)}
+    75% {clip: rect(115px, 9999px, 96px, 0)}
+    80% {clip: rect(50px, 9999px, 195px, 0)}
+    85% {clip: rect(71px, 9999px, 154px, 0)}
+    90% {clip: rect(49px, 9999px, 84px, 0)}
+    95% {clip: rect(73px, 9999px, 180px, 0) }
+    100% {clip: rect(113px, 9999px, 117px, 0)}
+}
